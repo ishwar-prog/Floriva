@@ -9,8 +9,8 @@ const brodine = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "floriva",
-  description: "photographic showcase portfolio",
+  title: "floriva — photographic showcase",
+  description: "a modern animated photographic showcase portfolio",
 };
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${brodine.variable} h-full antialiased`}>
-      <body className="min-h-full bg-black text-white selection:bg-[#a3c73c] selection:text-black">
+      <body className="min-h-full bg-[#020704] text-white selection:bg-[#a3c73c] selection:text-black">
         {children}
       </body>
     </html>

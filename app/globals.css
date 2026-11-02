@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import "lenis/dist/lenis.css";
 
 /* Explicit font definition for direct static serving */
@@ -27,6 +28,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-family: 'Geist', 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 300;
 }
 
 ::selection {
@@ -34,7 +37,9 @@ body {
   color: #020704;
 }
 
-/* Hero Section Layout */
+/* ============================================================
+   HERO SECTION
+   ============================================================ */
 .hero-container {
   position: relative;
   width: 100%;
@@ -63,7 +68,6 @@ body {
   user-select: none;
 }
 
-/* Heading Positioning & Typography */
 .hero-heading-wrapper {
   position: absolute;
   top: 22%;
@@ -127,5 +131,272 @@ body {
     font-size: clamp(2.6rem, 14.5vw, 4.2rem);
     letter-spacing: -0.02em;
     line-height: 1.35;
+  }
+}
+
+/* ============================================================
+   IF YOU LISTEN SECTION - SIMPLE 100DVH (ZERO EMPTY SPACE)
+   ============================================================ */
+.iyl-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #030a05;
+}
+
+.iyl-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.iyl-bg-image {
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+  filter: brightness(0.68) contrast(1.12);
+}
+
+.iyl-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(2, 7, 4, 0.08) 0%,
+    rgba(2, 7, 4, 0.55) 60%,
+    rgba(1, 4, 2, 0.95) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.iyl-top-blend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, #020704 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Slim Top-Right Heading */
+.iyl-header {
+  position: absolute;
+  top: 3.5rem;
+  right: 4.5rem;
+  z-index: 25;
+  pointer-events: none;
+}
+
+.iyl-title {
+  font-family: 'Geist', 'Lato', sans-serif;
+  font-weight: 200;
+  font-size: clamp(1.15rem, 2vw, 1.85rem);
+  letter-spacing: 0.24em;
+  color: rgba(225, 238, 220, 0.85);
+  text-transform: lowercase;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
+}
+
+/* Photographic Cards Stage */
+.iyl-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.photo-card {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #040905;
+  border: 1px solid rgba(180, 205, 170, 0.16);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.88),
+              0 0 1px 1px rgba(255, 255, 255, 0.05) inset;
+  transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.6s ease;
+  will-change: transform, opacity;
+}
+
+.photo-card:hover {
+  border-color: rgba(180, 205, 170, 0.35);
+  box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.98),
+              0 0 25px rgba(163, 199, 60, 0.16),
+              0 0 1px 1px rgba(255, 255, 255, 0.15) inset;
+  filter: brightness(1.06) contrast(1.03);
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============================================================
+   INDIVIDUAL CARD PLACEMENTS - REFINED MEDIUM SIZES & ZERO OVERLAP
+   ============================================================ */
+
+/* Center (Static - Does Not Move): IFL-5 (Winged Figure) */
+.card-ifl-5 {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(160px, 17.5vw, 240px);
+  aspect-ratio: 1 / 1;
+  z-index: 12;
+}
+
+/* Left Higher: IFL-2 (Picnic Girl under Tree) */
+.card-ifl-2 {
+  top: 32%;
+  left: 17%;
+  transform: translate(-50%, -50%);
+  width: clamp(130px, 13.5vw, 195px);
+  aspect-ratio: 1122 / 1402;
+  z-index: 13;
+}
+
+/* Left Lower: IFL-4 (Red Figure in Field) */
+.card-ifl-4 {
+  top: 72%;
+  left: 27%;
+  transform: translate(-50%, -50%);
+  width: clamp(125px, 13vw, 180px);
+  aspect-ratio: 1 / 1;
+  z-index: 16;
+}
+
+/* Right Higher: IFL-1 (Green Hands) */
+.card-ifl-1 {
+  top: 32%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  width: clamp(110px, 11.5vw, 165px);
+  aspect-ratio: 941 / 1672;
+  z-index: 14;
+}
+
+/* Right Lower: IFL-3 (Butterfly on Tree) */
+.card-ifl-3 {
+  top: 70%;
+  left: 88%;
+  transform: translate(-50%, -50%);
+  width: clamp(115px, 12vw, 170px);
+  aspect-ratio: 941 / 1672;
+  z-index: 15;
+}
+
+/* ============================================================
+   SPOOKY TEXT SNIPPETS (METICULOUSLY PLACED AWAY FROM IMAGES)
+   ============================================================ */
+.spooky-quote {
+  position: absolute;
+  font-family: 'Geist', 'Lato', sans-serif;
+  font-weight: 200;
+  font-size: clamp(0.72rem, 0.8vw, 0.85rem);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  color: rgba(200, 218, 195, 0.65);
+  text-transform: lowercase;
+  pointer-events: none;
+  user-select: none;
+  z-index: 20;
+  max-width: 200px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95);
+  transition: color 0.4s ease;
+}
+
+.spooky-quote:hover {
+  color: rgba(225, 245, 220, 0.95);
+}
+
+.quote-1 {
+  top: 10%;
+  left: 6%;
+}
+
+.quote-2 {
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 260px;
+}
+
+.quote-3 {
+  top: 85%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 260px;
+}
+
+.quote-4 {
+  top: 72%;
+  left: 6%;
+}
+
+/* Mobile & Tablet Adjustments */
+@media (max-width: 768px) {
+  .iyl-header {
+    top: 2rem;
+    right: 1.5rem;
+  }
+  .card-ifl-5 {
+    width: 38vw;
+    max-width: 170px;
+  }
+  .card-ifl-2 {
+    width: 27vw;
+    left: 16%;
+    top: 28%;
+  }
+  .card-ifl-1 {
+    width: 23vw;
+    left: 84%;
+    top: 28%;
+  }
+  .card-ifl-4 {
+    width: 25vw;
+    left: 18%;
+    top: 74%;
+  }
+  .card-ifl-3 {
+    width: 23vw;
+    left: 82%;
+    top: 74%;
+  }
+  .spooky-quote {
+    font-size: 0.68rem;
+    max-width: 130px;
+  }
+  .quote-1 {
+    top: 6%;
+    left: 4%;
+  }
+  .quote-2 {
+    top: 12%;
+    left: 50%;
+  }
+  .quote-3 {
+    top: 89%;
+    left: 50%;
+  }
+  .quote-4 {
+    top: 88%;
+    left: 4%;
   }
 }
