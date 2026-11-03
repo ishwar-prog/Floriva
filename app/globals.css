@@ -400,3 +400,43 @@ body {
     left: 4%;
   }
 }
+
+/* ============================================================
+   SECTION 3: FLEX CAROUSEL
+   ============================================================ */
+.flex-section {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 560px;
+  background: linear-gradient(to right, #f8f9fb 0%, #f8f9fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #121614;
+  font-family: 'Geist', 'Google Sans', 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+.flex-carousel-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+

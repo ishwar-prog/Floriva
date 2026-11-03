@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import FlexCarousel, { FlexCarouselItem } from "./components/FlexCarousel";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,51 @@ export default function Home() {
     {
       text: "you just weren't supposed to notice.",
       className: "quote-4",
+    },
+  ];
+
+  const flexItems: FlexCarouselItem[] = [
+    {
+      src: "/assets/flex-carasoul/flex-1.png",
+      alt: "verdant whispers",
+      title: "verdant whispers",
+      subtitle: "flora 01",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-2.png",
+      alt: "silent canopy",
+      title: "silent canopy",
+      subtitle: "flora 02",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-3.png",
+      alt: "moss veiled twilight",
+      title: "moss veiled twilight",
+      subtitle: "flora 03",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-4.png",
+      alt: "ethereal roots",
+      title: "ethereal roots",
+      subtitle: "flora 04",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-5.png",
+      alt: "ancient echoes",
+      title: "ancient echoes",
+      subtitle: "flora 05",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-6.png",
+      alt: "luminous foliage",
+      title: "luminous foliage",
+      subtitle: "flora 06",
+    },
+    {
+      src: "/assets/flex-carasoul/flex-7.png",
+      alt: "shadow bloom",
+      title: "shadow bloom",
+      subtitle: "flora 07",
     },
   ];
 
@@ -109,52 +155,58 @@ export default function Home() {
         );
       }
 
-      // Section 2 trigger: starts immediately as user scrolls from hero into Section 2
+      // Section 2 trigger: scrubbed parallax arrival directly driven by scroll
       if (iylSectionRef.current) {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: iylSectionRef.current,
-            start: "top 75%",
-            toggleActions: "play none none reverse",
+            start: "top bottom",
+            end: "top top",
+            scrub: 1.2,
           },
         });
 
         // Step 1: Heavy image arrival with mass and smooth deceleration
         tl.fromTo(
           ".card-ifl-1",
-          { y: -180, opacity: 0, scale: 1.08, rotate: 2.5 },
-          { y: 0, opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: "power4.out" },
+          { y: -260, xPercent: -50, yPercent: -50, opacity: 0, scale: 1.08, rotate: 3 },
+          { y: 0, xPercent: -50, yPercent: -50, opacity: 1, scale: 1, rotate: 0, ease: "power2.out" },
           0
         )
         .fromTo(
           ".card-ifl-2",
-          { y: -180, opacity: 0, scale: 1.08, rotate: -2.5 },
-          { y: 0, opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: "power4.out" },
-          0.06
+          { y: -260, xPercent: -50, yPercent: -50, opacity: 0, scale: 1.08, rotate: -3 },
+          { y: 0, xPercent: -50, yPercent: -50, opacity: 1, scale: 1, rotate: 0, ease: "power2.out" },
+          0.04
         )
         .fromTo(
           ".card-ifl-3",
-          { y: 180, opacity: 0, scale: 1.08, rotate: -2 },
-          { y: 0, opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: "power4.out" },
-          0.12
+          { y: 260, xPercent: -50, yPercent: -50, opacity: 0, scale: 1.08, rotate: -2.5 },
+          { y: 0, xPercent: -50, yPercent: -50, opacity: 1, scale: 1, rotate: 0, ease: "power2.out" },
+          0.08
         )
         .fromTo(
           ".card-ifl-4",
-          { y: 180, opacity: 0, scale: 1.08, rotate: 2 },
-          { y: 0, opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: "power4.out" },
-          0.18
+          { y: 260, xPercent: -50, yPercent: -50, opacity: 0, scale: 1.08, rotate: 2.5 },
+          { y: 0, xPercent: -50, yPercent: -50, opacity: 1, scale: 1, rotate: 0, ease: "power2.out" },
+          0.12
         )
         // Step 2: THEN the text comes in smoothly after the images arrive!
         .fromTo(
           ".spooky-quote",
-          { opacity: 0, y: 16 },
-          { opacity: 0.7, y: 0, duration: 1.0, stagger: 0.08, ease: "power3.out" },
-          0.75
+          { opacity: 0, y: 24 },
+          { opacity: 0.7, y: 0, stagger: 0.08, ease: "power2.out" },
+          0.4
         );
       }
     }, containerRef);
 
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+
     return () => {
+      clearTimeout(refreshTimer);
       ctx.revert();
       ScrollTrigger.getAll().forEach((st) => st.kill());
       if (updateLenis) gsap.ticker.remove(updateLenis);
@@ -282,6 +334,23 @@ export default function Home() {
               className="photo-img"
             />
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: FLEX CAROUSEL (100dvh - CLEAN CONTINUOUS FLOW) */}
+      <section className="flex-section" aria-label="photographic collection">
+        <div className="flex-carousel-stage">
+          <FlexCarousel
+            items={flexItems}
+            preset="liquid"
+            intro="rise"
+            cardHeight={0.52}
+            gap={14}
+            squeeze={0.2}
+            focusOnClick
+            captions
+            captureWheel={false}
+          />
         </div>
       </section>
     </div>
